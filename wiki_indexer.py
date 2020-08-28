@@ -182,9 +182,9 @@ class PageHandler( xml.sax.ContentHandler ):
    			return
    		categoryData = 0
 		if self.CurrentData == "title":
-			# print content, 'fuckkkkkkkkkkkkkkkkkkkkkk'
+			# print content
 			self.title.append(content.lower())
-			# print self.title, 'fuckkkkkkkkkkkkk1'
+			# print self.title, '1'
 			# exit()
 
 		elif self.CurrentData == "id":
@@ -245,17 +245,17 @@ class PageHandler( xml.sax.ContentHandler ):
 				self.categories.append(categoryData.lower())
 			elif(self.referenceFlag == True):
 				if(content.find("==References==") != -1):
-					# print 'shsihviosn'
+					# print 'Reference'
 					self.references.append(content[14:].lower())
 				else:
-					# print 'sjdbfkjsbfkjdnfk', content
+					# print 'Content', content
 					self.references.append(content.lower())
 			else:
 				self.page_content.append(content.lower())
 		# print self.title
    	# Call when an element ends
    	def endElement(self, tag):
-   		# print 'ji',self.title
+   		# print 'title',self.title
    		global wordCount, docID, finalDictionary
    		if tag == "page":
    			# print 'calling', self.infobox
@@ -267,7 +267,7 @@ class PageHandler( xml.sax.ContentHandler ):
    			# print self.references
    			self.storeIndexStructure(self.references,"references",5)
    			if self.id % 4000 == 0:
-   				# print 'dumbo'
+   				# print 'Dictionary'
    				self.printDictionary()
    				finalDictionary = {}
 		elif tag == "id" :
